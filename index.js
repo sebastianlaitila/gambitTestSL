@@ -41,7 +41,7 @@ try{
   var response = [];
   var start = parseInt(req.query.startIndex)
   var amount = parseInt(req.query.count)
-  for(var i = start;i< amount;i++){
+  for(var i = start;i< start+amount;i++){
     response.push(dataItem(i));
   }
 
