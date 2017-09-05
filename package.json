@@ -1,0 +1,23 @@
+{
+  "name": "gambittest",
+  "version": "1.0.0",
+  "description": "gambit test application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sebastianlaitila/gambitTestSL.git"
+  },
+  "author": "Sebastian Laitila",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sebastianlaitila/gambitTestSL/issues"
+  },
+  "homepage": "https://github.com/sebastianlaitila/gambitTestSL#readme",
+  "dependencies": {
+    "express": "^4.15.4",
+    "request": "^2.81.0"
+  }
+}
