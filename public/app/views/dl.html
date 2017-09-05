@@ -1,2 +1,69 @@
-<h1>now it's time for the front end</h1>
-{{data}}
+<md-toolbar>
+  <md-toolbar-tools layout="row">
+    <div ng-hide="searchVisible">
+    <md-button ng-hide="listVisible" class="md-icon-button" ng-click="listVisible = true">
+        <i class="material-icons">list</i>
+    </md-button>
+    <div ng-show="activeObject[0].Name">
+    <md-button ng-hide="!listVisible" class="md-icon-button" ng-click="listVisible = false">
+        <i class="material-icons">note</i>
+    </md-button></div>
+  </div>
+    <span flex></span>
+    <h2>TUF-2000M</h2>
+    <span flex></span>
+    <md-input-container ng-show="searchVisible">
+      <label>Search for registers</label>
+      <input type = "text" ng-model="search" ng-change="find(search)" />
+    </md-input-container>
+  <md-button ng-hide="searchVisible" class="md-icon-button" ng-click="searchVisible=true">
+    <i class="material-icons">search</i>
+  </md-button>
+  </md-toolbar-tools>
+</md-toolbar>
+<md-content layout="column">
+  <div layout = "column" ng-show="search.length>2">
+    <div layout="row" >
+      <md-content style="max-height:60%;">
+      <md-list>
+        <md-list-item class="secondary-button-padding"
+        ng-repeat="res in searchResults track by $index" ng-click="setActive(searchResults, res.Name)">
+          {{res.Register}} - {{res.Name}}</md-list-item>
+      </md-list>
+    </md-content>
+      <div flex ng-click="cancelSearch()"></div>
+  </div>
+  <div flex ng-click="cancelSearch()"></div>
+</div>
+
+<div layout="column" ng-click="cancelSearch()">
+  <div flex ng-if = "activeObject[0].Name && !searchVisible && !listVisible">
+    <md-card class="md-padding">
+      <h4>Name: {{activeObject[0].Name}}</h4>
+      <h5>Last value taken: {{getTime(activeObject[0].Time)}}</h5>
+      <div layout = "row">
+        <div class="md-padding"><strong>Values</strong></div><div ng-click="null" ng-repeat="obj in activeObject" class="md-padding"><strong>{{obj.Register}}:</strong> {{obj.Value}}</div>
+      </div>
+    </md-card>
+  </div>
+  <md-content layout="column" ng-if="listVisible">
+    <md-toolbar class = "md-hue-1" layout="row">
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="previous()" ng-show="listIndex>1">
+        <i class="material-icons">arrow_back</i>
+      </md-button>
+      <md-button class="md-icon-button" ng-click="next()">
+        <i class="material-icons">arrow_forward</i>
+      </md-button>
+      <span flex></span>
+    </md-toolbar>
+    <md-list flex>
+      <md-list-item ng-repeat="itm in List" ng-click="setActive(List, itm.Name)">
+        <h5>{{itm.Register}} - {{itm.Name}}</h5>
+      </md-list-item>
+    </md-list>
+
+  </md-content>
+</div>
+
+</md-content>
