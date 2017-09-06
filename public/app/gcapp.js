@@ -74,11 +74,14 @@ ngapp.component('registerContent', {
           $scope.activeObject = [];
           $scope.searchVisible=false;
           $scope.find("");
+
         collection.forEach(function (item){
           if (item.Name == value){
               $scope.activeObject.push(item);
             }
         });
+              $scope.listIndex = $scope.activeObject[0].Register;
+              getList();
       }
 
   }
