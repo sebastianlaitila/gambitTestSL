@@ -40,9 +40,8 @@ ngapp.component('registerContent', {
           getList();
       }
 
-      function getList(){ getData.list($scope.listIndex, 6)
+      function getList(){getData.list($scope.listIndex, 6)
       .then(function(res){
-        console.log(res.data);
         $scope.List= res.data;
       })
       }
@@ -81,6 +80,9 @@ ngapp.component('registerContent', {
             }
         });
               $scope.listIndex = $scope.activeObject[0].Register;
+              if($scope.listIndex + 6 > 95 ){
+                  $scope.listIndex = 95;
+                }
               getList();
       }
 
